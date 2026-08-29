@@ -41,6 +41,14 @@ func NewList() *ListLinks {
 	}
 }
 
+func (links *ListLinks) AllInfo() map[string]Link {
+	allLinks := make(map[string]Link, len(links.List))
+	for key, value := range links.List {
+		allLinks[key] = value
+	}
+	return allLinks
+}
+
 func (links *ListLinks) ValidateForCreate(link string) bool {
 	for _, value := range links.List {
 		if value.FullLink == link {

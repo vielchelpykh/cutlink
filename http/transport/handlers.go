@@ -59,8 +59,8 @@ func (handlerList *HandlerList) HandlerCreateShortLink(w http.ResponseWriter, r 
 	handlerList.AllLinks.List[newShortLink] = newLinkInfo
 
 	b, _ := json.MarshalIndent(newLinkInfo, "", "    ")
-	w.Write(b)
 	w.WriteHeader(http.StatusCreated)
+	w.Write(b)
 }
 
 func (handlerList *HandlerList) HandlerFollowLink(w http.ResponseWriter, r *http.Request) {
@@ -86,6 +86,13 @@ func (handlerList *HandlerList) HandlerGetStatistic(w http.ResponseWriter, r *ht
 	}
 
 	b, _ := json.MarshalIndent(linkInfo, "", "    ")
-	w.Write(b)
 	w.WriteHeader(http.StatusOK)
+	w.Write(b)
+}
+
+func (handlerList *HandlerList) HandlerGetAllInfo(w http.ResponseWriter, r *http.Request) {
+	list := handlerList.AllLinks.AllInfo()
+	b, _ := json.MarshalIndent(list, "", "    ")
+	w.WriteHeader(http.StatusOK)
+	w.Write(b)
 }

@@ -24,6 +24,7 @@ func (server *HTTPServer) StartServer() error {
 	router.Path("/links").Methods("POST").HandlerFunc(server.HandlerList.HandlerCreateShortLink)
 	router.Path("/links/{title}").Methods("PATCH").HandlerFunc(server.HandlerList.HandlerFollowLink)
 	router.Path("/links/{title}").Methods("GET").HandlerFunc(server.HandlerList.HandlerGetStatistic)
+	router.Path("/links").Methods("GET").HandlerFunc(server.HandlerList.HandlerGetAllInfo)
 
 	if err := http.ListenAndServe(":5000", router); err != nil {
 		if errors.Is(err, http.ErrServerClosed) {
