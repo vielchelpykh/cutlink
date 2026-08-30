@@ -8,7 +8,7 @@ import (
 )
 
 func CreateConnection(ctx context.Context) *pgx.Conn {
-	conn_string := os.Getenv("CONN_STRING")
+	conn_string := os.Getenv("CONN_STRING_DOCKER")
 	conn, err := pgx.Connect(ctx, conn_string)
 	if err != nil {
 		panic(err)
